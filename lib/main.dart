@@ -9,6 +9,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
+  static var userID;
   @override
   State<MyApp> createState() => _MyAppState();
 }

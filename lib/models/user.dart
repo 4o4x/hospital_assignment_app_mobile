@@ -8,11 +8,13 @@ class User {
   String? surname;
   String? email;
   String? password;
+  List<String> assigments;
   User(
       {this.name = null,
       this.surname = null,
       this.email = null,
-      this.password = null});
+      this.password = null,
+      this.assigments = const []});
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }

@@ -1,4 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:hospital_assignment_app_mobile/features/auth/screens/register.dart';
+import 'package:hospital_assignment_app_mobile/features/auth/services/auth.dart';
+import 'package:hospital_assignment_app_mobile/main.dart';
+import 'package:hospital_assignment_app_mobile/models/loginModel.dart';
+import 'package:http/http.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/login-screen';
@@ -10,6 +17,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen>
     with SingleTickerProviderStateMixin {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   late AnimationController _controller;
 
   @override
@@ -22,10 +31,13 @@ class _LoginScreenState extends State<LoginScreen>
   void dispose() {
     _controller.dispose();
     super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    LoginModel login = LoginModel();
     return Scaffold(
       backgroundColor: mainBackgroundColor,
       body: Center(
@@ -55,6 +67,7 @@ class _LoginScreenState extends State<LoginScreen>
                   height: 40,
                 ),
                 TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                       fillColor: mainTextBoxColor,
                       filled: true,
@@ -75,6 +88,7 @@ class _LoginScreenState extends State<LoginScreen>
                 ),
                 TextField(
                   autofocus: false,
+                  controller: passwordController,
                   decoration: InputDecoration(
                       fillColor: mainTextBoxColor,
                       filled: true,
@@ -100,9 +114,17 @@ class _LoginScreenState extends State<LoginScreen>
                   height: 10,
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    print("burak");
-                    print("selam");
+                  onPressed: () async {
+                    login.email = emailController.text;
+                    login.password = passwordController.text;
+                    Response response =
+                        (await AuthServices.loginService(login));
+                    if (response.statusCode != 200) {
+                      print("merhaba");
+                    } else {
+                      MyApp.userID = jsonDecode(response.body)["ID"];
+                      Navigator.pushNamed(context, RegisterScreen.routeName);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: mainButtonColor,
