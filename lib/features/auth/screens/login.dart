@@ -115,8 +115,28 @@ class _LoginScreenState extends State<LoginScreen>
                 ),
                 ElevatedButton(
                   onPressed: () async {
+                    if (emailController.text.isEmpty ||
+                        passwordController.text.isEmpty) {
+                      return showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text("Error"),
+                              content: Text("Please fill all the fields"),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("OK"))
+                              ],
+                            );
+                          });
+                    }
+
                     login.email = emailController.text;
                     login.password = passwordController.text;
+
                     Response response =
                         (await AuthServices.loginService(login));
                     if (response.statusCode != 200) {
