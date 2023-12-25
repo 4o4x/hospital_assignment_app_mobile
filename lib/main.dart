@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/screens/login.dart';
 import 'package:hospital_assignment_app_mobile/router.dart';
+import 'package:hospital_assignment_app_mobile/features/auth/screens/register.dart';
 
 void main() {
   runApp(

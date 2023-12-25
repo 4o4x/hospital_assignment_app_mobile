@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:hospital_assignment_app_mobile/features/auth/screens/home.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/screens/register.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/services/auth.dart';
 import 'package:hospital_assignment_app_mobile/main.dart';
@@ -137,13 +138,17 @@ class _LoginScreenState extends State<LoginScreen>
                     login.email = emailController.text;
                     login.password = passwordController.text;
 
+                    print(login.toJson().toString());
+
                     Response response =
                         (await AuthServices.loginService(login));
                     if (response.statusCode != 200) {
                       print("merhaba");
+                      print(
+                          response.body + " " + response.statusCode.toString());
                     } else {
                       MyApp.userID = jsonDecode(response.body)["ID"];
-                      Navigator.pushNamed(context, RegisterScreen.routeName);
+                      Navigator.pushNamed(context, HomeScreen.routeName);
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -158,6 +163,23 @@ class _LoginScreenState extends State<LoginScreen>
                   ),
                   child: Text(
                     "Login",
+                    style: TextStyle(
+                      color: mainTextColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+                // Evaleted Button for register page button just be text
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, RegisterScreen.routeName);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                  ),
+                  child: Text(
+                    "Register",
                     style: TextStyle(
                       color: mainTextColor,
                       fontSize: 12,

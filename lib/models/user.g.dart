@@ -7,12 +7,14 @@ part of 'user.dart';
 // **************************************************************************
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
+      id: json['id'] as String? ?? null,
+      currentService: json['currentService'] as String? ?? null,
       name: json['name'] as String? ?? null,
       surname: json['surname'] as String? ?? null,
       email: json['email'] as String? ?? null,
       password: json['password'] as String? ?? null,
-      assigments: (json['assigments'] as List<dynamic>?)
-              ?.map((e) => e as String)
+      activeAssigments: (json['activeAssigments'] as List<dynamic>?)
+              ?.map((e) => IssueModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );
@@ -22,5 +24,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'surname': instance.surname,
       'email': instance.email,
       'password': instance.password,
-      'assigments': instance.assigments,
+      'activeAssigments': instance.activeAssigments,
+      'id': instance.id,
+      'currentService': instance.currentService,
     };

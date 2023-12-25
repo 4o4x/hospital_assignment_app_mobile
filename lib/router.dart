@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_assignment_app_mobile/features/auth/screens/home.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/screens/login.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/screens/register.dart';
 
@@ -11,6 +12,10 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case RegisterScreen.routeName:
       return MaterialPageRoute(
         builder: (_) => const RegisterScreen(),
+      );
+    case HomeScreen.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const HomeScreen(),
       );
     default:
       return MaterialPageRoute(
