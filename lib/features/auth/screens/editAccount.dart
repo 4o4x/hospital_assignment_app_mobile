@@ -5,15 +5,15 @@ import 'package:http/http.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/services/auth.dart';
 import 'package:hospital_assignment_app_mobile/main.dart';
 
-class RegisterScreen extends StatefulWidget {
-  static const String routeName = '/register-screen';
-  const RegisterScreen({super.key});
+class EditAccountScreen extends StatefulWidget {
+  static const String routeName = '/editAccount-screen';
+  const EditAccountScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<EditAccountScreen> createState() => _EditAccountScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen>
+class _EditAccountScreenState extends State<EditAccountScreen>
     with SingleTickerProviderStateMixin {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -45,6 +45,14 @@ class _RegisterScreenState extends State<RegisterScreen>
     RegisterModel register = RegisterModel();
     return Scaffold(
       backgroundColor: mainBackgroundColor,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text('Account Settings', style: TextStyle(color: Colors.white)),
+        backgroundColor: mainButtonColor,
+      ),
       body: Center(
         child: SafeArea(
           child: Container(
@@ -58,10 +66,10 @@ class _RegisterScreenState extends State<RegisterScreen>
             height: 600,
             //color: Colors.amber[200],
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Register",
+                  "Account Settings",
                   style: TextStyle(
                     color: mainTextColor,
                     fontSize: 30,
@@ -202,7 +210,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(300, 50),
+                    minimumSize: Size(200, 50),
                     primary: mainButtonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -283,20 +291,16 @@ class _RegisterScreenState extends State<RegisterScreen>
                       }
                     }
                   },
-                  child: Text("Register"),
+                  child: Text(
+                    "Save",
+                    style: TextStyle(
+                      color: mainTextColor,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 10,
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen.routeName);
-                  },
-                  child: Text("Login",
-                      style: TextStyle(
-                        color: mainTextColor,
-                        fontSize: 12,
-                      )),
                 ),
               ],
             ),

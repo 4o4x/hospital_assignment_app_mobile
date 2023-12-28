@@ -1,99 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/screens/createIssue.dart';
+import 'package:hospital_assignment_app_mobile/features/auth/screens/home.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/screens/location.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/screens/login.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/screens/profile.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/screens/register.dart';
-import 'package:hospital_assignment_app_mobile/features/auth/screens/table.dart';
-import 'package:hospital_assignment_app_mobile/features/auth/screens/viewIssue.dart';
 import 'package:hospital_assignment_app_mobile/main.dart';
 import 'package:hospital_assignment_app_mobile/models/issueModel.dart';
 
-class HomeScreen extends StatefulWidget {
-  static const String routeName = "/home-screen";
-  const HomeScreen({Key? key}) : super(key: key);
+class TableScreen extends StatefulWidget {
+  static const String routeName = "/table-screen";
+  const TableScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _TableScreenState createState() => _TableScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
+class _TableScreenState extends State<TableScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  int _selectedIndex = 0; // Tracks the currently selected index
+  int _selectedIndex = 1; // Tracks the currently selected index
 
-  List<IssueModel> issues = [
-    IssueModel(
-      type: "Cleaning",
-      patientName: "Burak",
-      roomID: "1",
-      time: DateTime.now(),
-      assignedPerson: null,
-      id: "1",
-      status: "Assigned",
-      description: "Cleaning",
-    ),
-    IssueModel(
-      type: "Cleaning",
-      patientName: "Burak",
-      roomID: "1",
-      time: DateTime.now(),
-      assignedPerson: null,
-      id: "1",
-      status: "Closed",
-      description: "Cleaning",
-    ),
-    IssueModel(
-      type: "Cleaning",
-      patientName: "Burak",
-      roomID: "1",
-      time: DateTime.now(),
-      assignedPerson: null,
-      id: "1",
-      status: "Open",
-      description: "Cleaning",
-    ),
-    IssueModel(
-      type: "Cleaning",
-      patientName: "Burak",
-      roomID: "1",
-      time: DateTime.now(),
-      assignedPerson: null,
-      id: "1",
-      status: "Revorked",
-      description: "Cleaning",
-    ),
-    IssueModel(
-      type: "Cleaning",
-      patientName: "Burak",
-      roomID: "1",
-      time: DateTime.now(),
-      assignedPerson: null,
-      id: "1",
-      status: "Open",
-      description: "Cleaning",
-    ),
-    IssueModel(
-      type: "Cleaning",
-      patientName: "Burak",
-      roomID: "1",
-      time: DateTime.now(),
-      assignedPerson: null,
-      id: "1",
-      status: "Open",
-      description: "Cleaning",
-    ),
-    IssueModel(
-      type: "Cleaning",
-      patientName: "Burak",
-      roomID: "1",
-      time: DateTime.now(),
-      assignedPerson: null,
-      id: "1",
-      status: "Open",
-      description: "Cleaning",
-    ),
-  ];
+  List<IssueModel> issues = [];
 
   @override
   void initState() {
@@ -135,8 +63,9 @@ class _HomeScreenState extends State<HomeScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: () =>
-                    {Navigator.pushNamed(context, LocationScreen.routeName)},
+                onTap: () {
+                  Navigator.pushNamed(context, LocationScreen.routeName);
+                },
                 child: Container(
                   margin: EdgeInsets.all(50),
                   padding: EdgeInsets.all(25),
@@ -180,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen>
                 child: Column(
                   children: [
                     Text(
-                      "Issues",
+                      "Issue Table",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: mainTextColor,
@@ -191,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen>
                       height: 20,
                     ),
                     Divider(
-                      color: Colors.white,
+                      color: mainTextColor,
                       thickness: 2,
                     ),
                     SizedBox(
@@ -213,17 +142,6 @@ class _HomeScreenState extends State<HomeScreen>
                           color: getColor(issue
                               .status), // Set the color of the Card accordingly status of the issue
                           child: ListTile(
-                            onTap: () => {
-                              //navigate to view issue screen without using routname
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ViewIssueScreen(
-                                    issue: issue,
-                                  ),
-                                ),
-                              ),
-                            },
                             title: Text(
                               'Patient Name: ${issue.patientName}',
                               style: TextStyle(

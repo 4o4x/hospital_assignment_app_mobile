@@ -24,6 +24,20 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+Color getColor(String? status) {
+  if (status == "Open") {
+    return Color(0xFFBF3143);
+  } else if (status == "Closed") {
+    return Color(0xFF185A16);
+  } else if (status == "Assigned") {
+    return Color(0xFFB8A201);
+  } else if (status == "Revorked") {
+    return Color(0xFFB20870);
+  } else {
+    return Colors.white;
+  }
+}
+
 Color mainBackgroundColor = Color(0xFF151717);
 Color mainContainerColor = Color(0xFF1E1E1E);
 Color mainTextBoxColor = Color(0xFF333434);

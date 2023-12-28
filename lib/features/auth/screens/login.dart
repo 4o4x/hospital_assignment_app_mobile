@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/screens/home.dart';
 import 'package:hospital_assignment_app_mobile/features/auth/screens/register.dart';
@@ -39,6 +38,8 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     LoginModel login = LoginModel();
+    emailController.text = "burak@gmail.com"; // for test
+    passwordController.text = "123456"; // for test
     return Scaffold(
       backgroundColor: mainBackgroundColor,
       body: Center(
@@ -147,7 +148,8 @@ class _LoginScreenState extends State<LoginScreen>
                       print(
                           response.body + " " + response.statusCode.toString());
                     } else {
-                      MyApp.userID = jsonDecode(response.body)["ID"];
+                      MyApp.userID = jsonDecode(response.body)["_id"];
+                      print(MyApp.userID);
                       Navigator.pushNamed(context, HomeScreen.routeName);
                     }
                   },
@@ -194,9 +196,3 @@ class _LoginScreenState extends State<LoginScreen>
     );
   }
 }
-
-Color mainBackgroundColor = Color(0xFF151717);
-Color mainContainerColor = Color(0xFF1E1E1E);
-Color mainTextBoxColor = Color(0xFF333434);
-Color mainButtonColor = Color(0xFF032E2C);
-Color mainTextColor = Color(0xFFFFFFFF);
