@@ -21,7 +21,78 @@ class _TableScreenState extends State<TableScreen>
   late AnimationController _controller;
   int _selectedIndex = 1; // Tracks the currently selected index
 
-  List<IssueModel> issues = [];
+  List<IssueModel> issues = [
+    IssueModel(
+      type: "Cleaning",
+      patientName: "Burak",
+      roomID: "1",
+      time: DateTime.now(),
+      assignedPerson: null,
+      id: "1",
+      status: "Assigned",
+      description: "Cleaning",
+    ),
+    IssueModel(
+      type: "Cleaning",
+      patientName: "Burak",
+      roomID: "1",
+      time: DateTime.now(),
+      assignedPerson: null,
+      id: "1",
+      status: "Closed",
+      description: "Cleaning",
+    ),
+    IssueModel(
+      type: "Cleaning",
+      patientName: "Burak",
+      roomID: "1",
+      time: DateTime.now(),
+      assignedPerson: null,
+      id: "1",
+      status: "Open",
+      description: "Cleaning",
+    ),
+    IssueModel(
+      type: "Cleaning",
+      patientName: "Burak",
+      roomID: "1",
+      time: DateTime.now(),
+      assignedPerson: null,
+      id: "1",
+      status: "Revorked",
+      description: "Cleaning",
+    ),
+    IssueModel(
+      type: "Cleaning",
+      patientName: "Burak",
+      roomID: "1",
+      time: DateTime.now(),
+      assignedPerson: null,
+      id: "1",
+      status: "Open",
+      description: "Cleaning",
+    ),
+    IssueModel(
+      type: "Cleaning",
+      patientName: "Burak",
+      roomID: "1",
+      time: DateTime.now(),
+      assignedPerson: null,
+      id: "1",
+      status: "Open",
+      description: "Cleaning",
+    ),
+    IssueModel(
+      type: "Cleaning",
+      patientName: "Burak",
+      roomID: "1",
+      time: DateTime.now(),
+      assignedPerson: null,
+      id: "1",
+      status: "Open",
+      description: "Cleaning",
+    ),
+  ];
 
   @override
   void initState() {
