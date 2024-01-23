@@ -182,7 +182,7 @@ This is the edit profile screen where the user can edit account details.
 
 ### Photo
 
-![Edit Account](images/edit_account.png)
+![Edit Account](images/account_settings.png)
 
 ## Change Location
 
